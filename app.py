@@ -1,17 +1,40 @@
 import streamlit as st
-import json
-import requests
+import json, requests
+import tensorflow as tf 
 import matplotlib.pyplot as plt
 import numpy as np
 
-URI = 'http://127.0.0.1:5000/'
+
+model = tf.keras.models.load_model('model.h5')
+
+feature_model = tf.keras.models.Model(
+    model.inputs,
+    [layer.output for layer in model.layers]
+)
+
+_, (test_data, _) = tf.keras.datasets.mnist.load_data()
+test_data = test_data / 255.0
+
+def get_prediction():
+    index = np.random.choice(test_data.shape[0])
+    image = test_data[index, :, :]
+    image_arr = np.reshape(image, (1,784))
+    return feature_model.predict(image_arr), image
+
+def pre():
+    preds, image = get_prediction()
+    final_preds = [p.tolist() for p in preds]
+    return json.dumps({
+        'prediction': final_preds,
+        'image': image.tolist()
+    })
 
 st.title('Neural Network Visualizer')
-st.markdown('## Input Image')
+st.markdown('## Input Image:')
 
 if st.button('Get Random Prediction'):
-    response = requests.post(URI, data={})
-    response = json.loads(response.text)
+    p = pre()
+    response = json.loads(p)
     preds = response.get('prediction')
     image = response.get('image')
     image = np.reshape(image, (28,28))
