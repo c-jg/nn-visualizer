@@ -1,7 +1,7 @@
 # Visualizing a Neural Network 
-#### A [Streamlit]("https://github.com/streamlit/streamlit") application for visualizing a TensorFlow classification model.
+#### A [Streamlit](https://github.com/streamlit/streamlit) application for visualizing a TensorFlow classification model.
 
-Try the application [here]("http://54.157.140.17:8501/").
+Try it [HERE](http://54.157.140.17:8501/).
 
 The model is trained on the MNIST handwritten numbers dataset and classfies the inputted image.
 
