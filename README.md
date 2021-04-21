@@ -5,4 +5,4 @@ Try it [HERE](https://neural-net-vis.herokuapp.com/).
 
 The model is trained on the MNIST handwritten numbers dataset and classfies the inputted image.
 
-<img src="https://cguer.s3.amazonaws.com/Screen+Shot+2020-06-26+at+2.34.55+PM.png">
+![](Screen%20Shot%202021-04-20%20at%2010.29.47%20PM.png)
